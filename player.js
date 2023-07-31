@@ -6,6 +6,8 @@ class Player extends GameObject {
         this.controller = {};
         this.projectiles = [];    
         this.cooldown= 15; 
+        this.healthPoints = 3;
+        this.score=0
     }
 
     draw(ctx){
@@ -28,38 +30,36 @@ class Player extends GameObject {
             this.controller[keyevent.key] = false
         })
 
-        console.log(this.controller);
         
-        for (const key in this.controller) {
-            if (key.includes('Left') && this.controller[key]) {
+
+            if (this.controller['ArrowLeft']) {
                 this.x=  this.x - this.speed
                 if (this.x<=0) {
                     this.x=0
                 }
             }
-            if (key.includes('Right') && this.controller[key]) {
+            if (this.controller['ArrowRight']) {
                 this.x= this.x + this.speed
                 if (this.x>=canvasWidth-this.width) {
                     this.x=canvasWidth - this.width
                 }
             }
-            if (key.includes('Up') && this.controller[key]) {
+            if (this.controller['ArrowUp']) {
                 this.y = this.y - this.speed
                 if (this.y <= 0) {
                     this.y = 0
                 }
             }
-            if (key.includes('Down') && this.controller[key]) {
+            if (this.controller['ArrowDown'] ) {
                 this.y = this.y + this.speed
                 if (this.y >= canvasHeight-this.height) {
                     this.y = canvasHeight - this.height
                 }
             }
 
-            if (key.includes(' ') && this.controller[key]) {
+            if (this.controller[' '] ) {
                 this.baseAttack()
             }
-        }
     }
 
 
@@ -71,4 +71,16 @@ class Player extends GameObject {
         }
 
     }
+
+    death(){
+        if (this.healthPoints <= 0){
+            
+        }
+    }
+
+    takeDamage(){
+
+    }
+
+
 }
